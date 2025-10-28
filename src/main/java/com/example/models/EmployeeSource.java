@@ -1,6 +1,7 @@
 package com.example.models;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -35,12 +36,32 @@ public class EmployeeSource implements EmployeeAccessible {
             emp.setSalary(rs.getBigDecimal("salary"));
             empList.add(emp);            
         }
+        database.close(conn);
+        // conn.close();
         return empList;
     }
     @Override
     public void store(Employee emp) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'store'");
+        try {
+            tryStore(emp);
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+
+    }
+    public void tryStore(Employee emp) throws SQLException {
+        Connection conn=database.connect();
+        String url="""
+                INSERT INTO employees
+                (name, city, salary)
+                VALUES
+                (?,?,?)
+                """;
+            PreparedStatement ps=conn.prepareStatement(url);
+            ps.setString(1, emp.getName());
+            ps.setString(2, emp.getCity());
+            ps.setBigDecimal(3, emp.getSalary());
+            ps.execute();
     }
     @Override
     public void update(Employee emp, int id) {

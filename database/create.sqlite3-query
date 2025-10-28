@@ -1,0 +1,19 @@
+-- database: ../database.sqlite
+
+SELECT * FROM "employees";
+
+CREATE table employees(
+    id integer not null primary key AUTOINCREMENT,
+    name varchar(50),
+    city varchar(50),
+    salary decimal
+);
+
+
+
+INSERT INTO employees
+(name, city, salary)
+VALUES
+("Erős Jani", "Szeged", 395.8),
+("Csonka Béla", "Szeged", 392.8),
+("Pad Ödön", "Szeged", 392.5);
