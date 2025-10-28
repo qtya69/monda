@@ -13,7 +13,10 @@ public class Main {
         EmployeeSource es=new EmployeeSource(new Sqlite());
 
         Employee newemp=new Employee("Csomó Szilveszter", "Budapest", new BigDecimal(397.2));
-        es.store(newemp);
+        // es.store(newemp);
+
+        Employee updateemp=new Employee("Tank Aranka", "Budapest", new BigDecimal(397.5));
+        es.update(updateemp, 5);
 
         ArrayList<Employee> empList=es.index();
         empList.forEach((emp) -> {
