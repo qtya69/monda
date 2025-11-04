@@ -16,7 +16,7 @@ public class Main {
         // es.store(newemp);
 
         Employee updateemp=new Employee("Tank Aranka", "Budapest", new BigDecimal(397.5));
-        es.update(updateemp, 5);
+        // es.update(updateemp, 5);
 
         ArrayList<Employee> empList=es.index();
         empList.forEach((emp) -> {
