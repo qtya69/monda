@@ -20,7 +20,12 @@ public class Main {
 
         ArrayList<Employee> empList=es.index();
         empList.forEach((emp) -> {
-            System.out.println(emp.getName());
+            System.out.printf(
+                "%d %s\n",
+                emp.getName(),
+                emp.getId(),
+                emp.getCity()
+                );
         });
         // ArrayList<Employee> empList=new EmployeeSource(new Sqlite()).index();
     }
